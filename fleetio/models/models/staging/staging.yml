@@ -2,10 +2,68 @@ version: 2
 
 models:
   - name: stg_accounts
-    description: "Table containing order information"
+    description: "Contains account information as owned by the sales and marketing team."
     columns:
       - name: account_id
-        description: "Unique identifier for each order"
+        description: "Primary key taken directly from the original seed file"
         tests:
           - unique
           - not_null
+      - name: company
+        description: "The company associated with the account_id.  There should not be duplicate company names in this dataset.  If so talk to team X."
+        tests:
+          - unique
+          - not_null
+      - name: primary_contact_id
+        description: "FK to stg_contacts.id"
+        tests:
+          - relationships:
+              to: ref('stg_contacts')
+              field: contact_id
+      - name: country
+        description: "country associated with the account."
+        tests:
+          - accepted_values:
+              values: ['US']
+      - name: state
+        description: "state associated with the account."
+      - name: city
+        description: "city associated with the account."
+      - name: industry
+        description: "industry associated with the account."
+      - name: fleet_size
+        description: fleet size associated with the account."
+
+  - name: stg_contacts
+    description: "Contains contact information as owned by the sales and marketing team."
+    columns:
+      - name: contact_id
+        description: "Primary key taken directly from the original seed file"
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "first name associated with the contact"
+        tests:
+          - not_null
+      - name: last_name
+        description: "last name associated with the contact"
+        tests:
+          - not_null
+      - name: job_title
+        description: "job title associated with the contact"
+      - name: email
+        description: "email associated with the contact"
+      - name: account_id
+        description: "account_id associated with the contact"
+        tests:
+          - relationships:
+              to: ref('stg_accounts')
+              field: account_id
+      - name: lead_id
+        description: "lead_id associated with the contact"
+          - relationships:
+              to: ref('stg_leads')
+              field: lead_id
+      - name: created_at
+        description: "timestamp of when the contact was created."
