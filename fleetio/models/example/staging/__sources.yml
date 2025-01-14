@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: marketing_and_sales
+    schema: raw
+    description: The sales and marketing teams capture leads, which may become contacts, accounts, and opportunities depending on whether or not they are converted. Those opportunities may then be open or closed and won or lost.
+    #####freshness checks are great for data you know should be updated
+    #####normally this would be configured depending on the expected freshness of this data
+    # freshness:
+    #   warn_after:
+    #     count: 24
+    #     period: hour
+    tables:
+      - name: raw_accounts
+        description: One record per account with basic account information including contact, fleet size and industry.
+      - name: raw_contacts
+        description: One record per contact with basic contact information including first name, last name job title and email.
+      - name: raw_leads
+        description: One record per lead with basic lead information including first name, last name job title and email.
+      - name: raw_opportunities
+        description: One record per opportunity with basic opportunity information including if and when an opportunity was closed, if it was won and the corresponsing country and state information it belongs to.
