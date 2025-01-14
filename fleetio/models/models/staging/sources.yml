@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: marketing_and_sales
+    schema: fleetio_raw
+    description: The sales and marketing teams capture leads, which may become contacts, accounts, and opportunities depending on whether or not they are converted. Those opportunities may then be open or closed and won or lost.
+    #####freshness checks are great for data you know should be updated
+    #####normally this would be configured depending on the expected freshness of this data and there
+    #####would be some sort of loaded_at field, for the purposes of this excersize I will just use created_at
+    loaded_at_field: created_at
+    freshness:
+      warn_after: { count: 3000, period: day }
+      error_after: { count: 5000, period: day }
+
+    tables:
+      - name: raw_accounts
+        freshness: null ###no created_at in this table therefore no freshness check
+        description: One record per account with basic account information.  More information on definitions and tests can be found in the associated staging files.
+      - name: raw_contacts
+        description: One record per contact with basic contact information. More information on definitions and tests can be found in the associated staging files.
+      - name: raw_leads
+        description: One record per lead with basic lead information.  More information on definitions and tests can be found in the associated staging files.
+      - name: raw_opportunities
+        description: One record per opportunity with basic opportunity information.  More information on definitions and tests can be found in the associated staging files.

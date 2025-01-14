@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_accounts
+    description: "Table containing order information"
+    columns:
+      - name: account_id
+        description: "Unique identifier for each order"
+        tests:
+          - unique
+          - not_null
