@@ -16,7 +16,4 @@ final as(
         assuming we will never need the timestamp grain */
         date(created_at) as created_at_date
     from base
-)
-
-select *
-from final
+) select * from final

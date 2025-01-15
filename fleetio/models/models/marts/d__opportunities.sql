@@ -1,6 +1,6 @@
-with base as(
+with opportunities as(
     select *
-    from {{ source('marketing_and_sales', 'raw_opportunities') }}
+    from {{ ref('stg_opportunities') }}
 ),
 
 final as(
@@ -16,5 +16,9 @@ final as(
         country,
         state,
         city
-    from base
+    from opportunities
 ) select * from final
+
+
+
+

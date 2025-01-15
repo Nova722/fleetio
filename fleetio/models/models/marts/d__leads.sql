@@ -3,11 +3,6 @@ with leads as(
     from {{ ref('stg_leads') }}
 ),
 
-contacts as(
-    select *
-    from {{ ref('stg_contacts') }}
-),
-
 final as(
     select
         a.lead_id,
@@ -24,10 +19,7 @@ final as(
         a.state,
         a.industry,
         a.fleet_size
-
     from leads as a
     left join contacts as b   
         on a.lead_id = b.lead_id
-)
-
-select * from final
+) select * from final

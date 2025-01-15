@@ -14,7 +14,4 @@ final as(
         industry, 
         fleet_size
     from base
-)
-
-select *
-from final
+)select * from final
