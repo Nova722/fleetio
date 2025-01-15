@@ -1,3 +1,5 @@
-
 version: 2
 
+models:
+  - name: d__leads
+  - name: fct_leads_daily

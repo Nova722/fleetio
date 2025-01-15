@@ -11,8 +11,12 @@ final as(
         job_title,
         email,
         company,
-        created_at,
-        converted_at,
+        /* I am going to be converting to date in staging 
+        assuming we will never need the timestamp grain
+        if we do ever need it I would add a column here called created_at
+        so no downstream changes would be needed */
+        date(created_at) as created_at_date,
+        date(converted_at) as converted_at_date,
         source,
         country,
         city,

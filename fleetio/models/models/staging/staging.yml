@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_accounts
-    description: "Contains account information as owned by the sales and marketing team."
+    description: "Accounts are created after leads have converted. Owned by the sales and marketing team."
     columns:
       - name: account_id
         description: "Primary key taken directly from the original seed file."
@@ -34,7 +34,7 @@ models:
       - name: fleet_size
         description: fleet size associated with the account."
   - name: stg_contacts
-    description: "Contains contact information as owned by the sales and marketing team."
+    description: "Contact records are created after leads have converted. Owned by the sales and marketing team."
     columns:
       - name: contact_id
         description: "Primary key taken directly from the original seed file."
@@ -65,10 +65,10 @@ models:
           - relationships:
               to: ref('stg_leads')
               field: lead_id
-      - name: created_at
-        description: "timestamp of when the contact was created."
+      - name: created_at_date
+        description: "date of when the contact was created."
   - name: stg_leads
-    description: "Contains lead information as owned by the sales and marketing team."
+    description: "Created automatically from various sources. Owned by the sales and marketing team."
     columns:
       - name: lead_id
         description: "Primary key taken directly from the original seed file."
@@ -92,10 +92,10 @@ models:
         tests:
           - unique
           - not_null
-      - name: created_at
-        description: "timestamp of when the lead was created."
-      - name: converted_at
-        description: "timestamp of when the lead was converted."
+      - name: created_at_date
+        description: "date of when the lead was created."
+      - name: converted_at_date
+        description: "date of when the lead was converted."
       - name: source
         description: "source the lead came from."
       - name: country
@@ -112,7 +112,7 @@ models:
       - name: fleet_size
         description: fleet size associated with the lead."
   - name: stg_opportunities
-    description: "Contains opportunity information as owned by the sales and marketing team."
+    description: "Opportunities are created after leads have converted. Owned by the sales and marketing team."
     columns:
       - name: opportunity_id
         description: "Primary key taken directly from the original seed file."
@@ -125,10 +125,10 @@ models:
           - relationships:
               to: ref('stg_accounts')
               field: account_id
-      - name: created_at
-        description: "timestamp of when the opportunity was created."
+      - name: created_at_date
+        description: "date of when the opportunity was created."
       - name: closed_at
-        description: "timestamp of when the opportunity was closed."
+        description: "date of when the opportunity was closed."
       - name: is_closed
         description: "true of the opportunity is closed. This field should never be null."
         tests:
