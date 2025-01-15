@@ -1,9 +1,18 @@
-WITH base AS (
-    SELECT *
-    FROM {{ dbt_utils.date_spine(
-        datepart="day",
-        start_date="2015-01-01", 
-        end_date= "2030-01-01"
-    ) }}
-)
-SELECT * FROM base;
+with base as(
+    /* This package has many different date dimensions that could be
+    explored as needed but I will only pull the things I need
+    for simplicity */
+    {{ dbt_date.get_date_dimension("2010-01-01", "2050-01-01") }}
+),
+
+final as(
+    select 
+        {{ dbt_utils.generate_surrogate_key(['date_day']) }} as date_id,
+        date_day,
+        day_of_week_name, 
+        week_start_date,
+        week_end_date,
+        month_start_date,
+        month_end_date
+    from base
+) select * from final

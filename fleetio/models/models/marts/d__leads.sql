@@ -20,6 +20,4 @@ final as(
         a.industry,
         a.fleet_size
     from leads as a
-    left join contacts as b   
-        on a.lead_id = b.lead_id
 ) select * from final

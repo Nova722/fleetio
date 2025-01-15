@@ -1,6 +1,7 @@
 version: 2
 
 models:
+  - name: d__all_dates
   - name: d__leads
   - name: d__opportunities
   - name: fct_leads_daily
