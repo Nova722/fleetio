@@ -67,6 +67,50 @@ models:
               field: lead_id
       - name: created_at
         description: "timestamp of when the contact was created."
+  - name: stg_leads
+    description: "Contains lead information as owned by the sales and marketing team."
+    columns:
+      - name: lead_id
+        description: "Primary key taken directly from the original seed file."
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "first name associated with the lead."
+        tests:
+          - not_null
+      - name: last_name
+        description: "last name associated with the lead."
+        tests:
+          - not_null
+      - name: job_title
+        description: "job title associated with the lead."
+      - name: email
+        description: "email associated with the lead."
+      - name: company
+        description: "The company associated with the lead.  There should not be duplicate company names in this dataset.  If so talk to team X."
+        tests:
+          - unique
+          - not_null
+      - name: created_at
+        description: "timestamp of when the lead was created."
+      - name: converted_at
+        description: "timestamp of when the lead was converted."
+      - name: source
+        description: "source the lead came from."
+      - name: country
+        description: "country associated with the lead."
+        tests:
+          - accepted_values:
+              values: ['US']
+      - name: city
+        description: "city associated with the lead."
+      - name: state
+        description: "state associated with the lead."
+      - name: industry
+        description: "industry associated with the lead."
+      - name: fleet_size
+        description: fleet size associated with the lead."
   - name: stg_opportunities
     description: "Contains opportunity information as owned by the sales and marketing team."
     columns:
