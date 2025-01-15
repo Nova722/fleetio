@@ -33,7 +33,6 @@ models:
         description: "industry associated with the account."
       - name: fleet_size
         description: fleet size associated with the account."
-
   - name: stg_contacts
     description: "Contains contact information as owned by the sales and marketing team."
     columns:
@@ -62,8 +61,48 @@ models:
               field: account_id
       - name: lead_id
         description: "lead_id associated with the contact"
+        tests:
           - relationships:
               to: ref('stg_leads')
               field: lead_id
       - name: created_at
         description: "timestamp of when the contact was created."
+  - name: stg_opportunities
+    description: "Contains opportunity information as owned by the sales and marketing team."
+    columns:
+      - name: opportunity_id
+        description: "Primary key taken directly from the original seed file"
+        tests:
+          - unique
+          - not_null
+      - name: account_id
+        description: "account_id associated with the opportunity"
+        tests:
+          - relationships:
+              to: ref('stg_accounts')
+              field: account_id
+      - name: created_at
+        description: "timestamp of when the opportunity was created."
+      - name: closed_at
+        description: "timestamp of when the opportunity was closed."
+      - name: is_closed
+        description: "true of the opportunity is closed."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['TRUE', 'FALSE']
+      - name: is_won
+        description: "true of the opportunity is won.  This field should never be null."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['TRUE', 'FALSE']
+      - name: country
+        description: "country associated with the opportunity."
+        tests:
+          - accepted_values:
+              values: ['US']
+      - name: state
+        description: "state associated with the opportunity."
+      - name: city
+        description: "city associated with the opportunity."
