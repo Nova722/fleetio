@@ -5,7 +5,7 @@ models:
     description: "Contains account information as owned by the sales and marketing team."
     columns:
       - name: account_id
-        description: "Primary key taken directly from the original seed file"
+        description: "Primary key taken directly from the original seed file."
         tests:
           - unique
           - not_null
@@ -37,30 +37,30 @@ models:
     description: "Contains contact information as owned by the sales and marketing team."
     columns:
       - name: contact_id
-        description: "Primary key taken directly from the original seed file"
+        description: "Primary key taken directly from the original seed file."
         tests:
           - unique
           - not_null
       - name: first_name
-        description: "first name associated with the contact"
+        description: "first name associated with the contact."
         tests:
           - not_null
       - name: last_name
-        description: "last name associated with the contact"
+        description: "last name associated with the contact."
         tests:
           - not_null
       - name: job_title
-        description: "job title associated with the contact"
+        description: "job title associated with the contact."
       - name: email
-        description: "email associated with the contact"
+        description: "email associated with the contact."
       - name: account_id
-        description: "account_id associated with the contact"
+        description: "account_id associated with the contact."
         tests:
           - relationships:
               to: ref('stg_accounts')
               field: account_id
       - name: lead_id
-        description: "lead_id associated with the contact"
+        description: "lead_id associated with the contact."
         tests:
           - relationships:
               to: ref('stg_leads')
@@ -71,12 +71,12 @@ models:
     description: "Contains opportunity information as owned by the sales and marketing team."
     columns:
       - name: opportunity_id
-        description: "Primary key taken directly from the original seed file"
+        description: "Primary key taken directly from the original seed file."
         tests:
           - unique
           - not_null
       - name: account_id
-        description: "account_id associated with the opportunity"
+        description: "account_id associated with the opportunity."
         tests:
           - relationships:
               to: ref('stg_accounts')
@@ -86,7 +86,7 @@ models:
       - name: closed_at
         description: "timestamp of when the opportunity was closed."
       - name: is_closed
-        description: "true of the opportunity is closed."
+        description: "true of the opportunity is closed. This field should never be null."
         tests:
           - not_null
           - accepted_values:
