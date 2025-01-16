@@ -21,26 +21,27 @@ opportunities as(
 final as(
     select
         a.lead_id,
-        a.first_name,
-        a.last_name,
-        a.job_title,
-        a.email,
-        a.company,
-        a.created_at_date,
-        a.converted_at_date,
+        a.lead_first_name,
+        a.lead_last_name,
+        a.lead_job_title,
+        a.lead_email,
+        a.lead_company,
+        a.lead_created_at_date,
+        a.lead_converted_at_date,
+        a.lead_source,
+        a.lead_country,
+        a.lead_city,
+        a.lead_state,
+        a.lead_industry,
+        a.lead_fleet_size,
+        d.opportunity_id,
         /*we may want metrics on what happens to leads after they become opportunites
         for which we can use this column for any trends of leads that were not only
         converted but became won opportunities*/ 
-        case when d.is_closed = true and d.is_won = true then 'won opportunity'
-            when d.is_closed = true and d.is_won = false then 'lost opportunity'
-            when d.is_closed = false and d.is_won = false then 'open opportunity'
-            else 'status missing mapping' end as opportunity_status,
-        a.source,
-        a.country,
-        a.city,
-        a.state,
-        a.industry,
-        a.fleet_size
+        case when d.opportunity_is_closed = true and d.opportunity_is_won = true then 'won opportunity'
+            when d.opportunity_is_closed = true and d.opportunity_is_won = false then 'lost opportunity'
+            when d.opportunity_is_closed = false and d.opportunity_is_won = false then 'open opportunity'
+            else 'lead not converted to opportunity' end as opportunity_status,
     from leads as a
     left join contacts as b  
         on a.lead_id = b.lead_id

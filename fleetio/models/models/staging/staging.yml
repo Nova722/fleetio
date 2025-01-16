@@ -9,7 +9,7 @@ models:
         tests:
           - unique
           - not_null
-      - name: company
+      - name: account_company
         description: "The company associated with the account_id.  There should not be duplicate company names in this dataset.  If so talk to team X."
         tests:
           - unique
@@ -20,18 +20,18 @@ models:
           - relationships:
               to: ref('stg_contacts')
               field: contact_id
-      - name: country
+      - name: account_country
         description: "country associated with the account."
         tests:
           - accepted_values:
               values: ['US']
-      - name: state
+      - name: account_state
         description: "state associated with the account."
-      - name: city
+      - name: account_city
         description: "city associated with the account."
-      - name: industry
+      - name: account_industry
         description: "industry associated with the account."
-      - name: fleet_size
+      - name: account_fleet_size
         description: fleet size associated with the account."
   - name: stg_contacts
     description: "Contact records are created after leads have converted. Owned by the sales and marketing team."
@@ -41,17 +41,17 @@ models:
         tests:
           - unique
           - not_null
-      - name: first_name
+      - name: contact_first_name
         description: "first name associated with the contact."
         tests:
           - not_null
-      - name: last_name
+      - name: contact_last_name
         description: "last name associated with the contact."
         tests:
           - not_null
-      - name: job_title
+      - name: contact_job_title
         description: "job title associated with the contact."
-      - name: email
+      - name: contact_email
         description: "email associated with the contact."
       - name: account_id
         description: "account_id associated with the contact."
@@ -65,7 +65,9 @@ models:
           - relationships:
               to: ref('stg_leads')
               field: lead_id
-      - name: created_at_date
+      - name: contact_created_at
+        description: "timestamp of when the contact was created."
+      - name: contact_created_at_date
         description: "date of when the contact was created."
   - name: stg_leads
     description: "Created automatically from various sources. Owned by the sales and marketing team."
@@ -75,41 +77,45 @@ models:
         tests:
           - unique
           - not_null
-      - name: first_name
+      - name: lead_first_name
         description: "first name associated with the lead."
         tests:
           - not_null
-      - name: last_name
+      - name: lead_last_name
         description: "last name associated with the lead."
         tests:
           - not_null
-      - name: job_title
+      - name: lead_job_title
         description: "job title associated with the lead."
-      - name: email
+      - name: lead_email
         description: "email associated with the lead."
-      - name: company
+      - name: lead_company
         description: "The company associated with the lead.  There should not be duplicate company names in this dataset.  If so talk to team X."
         tests:
           - unique
           - not_null
-      - name: created_at_date
+      - name: lead_created_at
+        description: "timestamp of when the lead was created."
+      - name: lead_created_at_date
         description: "date of when the lead was created."
-      - name: converted_at_date
+      - name: lead_converted_at
+        description: "timestamp of when the lead was converted."
+      - name: lead_converted_at_date
         description: "date of when the lead was converted."
-      - name: source
+      - name: lead_source
         description: "source the lead came from."
-      - name: country
+      - name: lead_country
         description: "country associated with the lead."
         tests:
           - accepted_values:
               values: ['US']
-      - name: city
+      - name: lead_city
         description: "city associated with the lead."
-      - name: state
+      - name: lead_state
         description: "state associated with the lead."
-      - name: industry
+      - name: lead_industry
         description: "industry associated with the lead."
-      - name: fleet_size
+      - name: lead_fleet_size
         description: fleet size associated with the lead."
   - name: stg_opportunities
     description: "Opportunities are created after leads have converted. Owned by the sales and marketing team."
@@ -125,28 +131,32 @@ models:
           - relationships:
               to: ref('stg_accounts')
               field: account_id
-      - name: created_at_date
+      - name: opportunity_created_at
+        description: "timestamp of when the opportunity was created."
+      - name: opportunity_created_at_date
         description: "date of when the opportunity was created."
-      - name: closed_at
+      - name: opportunity_closed_at
+        description: "timestamps of when the opportunity was closed."
+      - name: opportunity_closed_at_date
         description: "date of when the opportunity was closed."
-      - name: is_closed
+      - name: opportunity_is_closed
         description: "true of the opportunity is closed. This field should never be null."
         tests:
           - not_null
           - accepted_values:
               values: ['TRUE', 'FALSE']
-      - name: is_won
+      - name: opportunity_is_won
         description: "true of the opportunity is won.  This field should never be null."
         tests:
           - not_null
           - accepted_values:
               values: ['TRUE', 'FALSE']
-      - name: country
+      - name: opportunity_country
         description: "country associated with the opportunity."
         tests:
           - accepted_values:
               values: ['US']
-      - name: state
+      - name: opportunity_state
         description: "state associated with the opportunity."
-      - name: city
+      - name: opportunity_city
         description: "city associated with the opportunity."

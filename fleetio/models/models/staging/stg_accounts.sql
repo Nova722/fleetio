@@ -6,12 +6,12 @@ with base as(
 final as(
     select 
         id as account_id,
-        company,
+        company as account_company,
         primary_contact_id,
-        country,
-        state,
-        city,
-        industry, 
-        fleet_size
+        country as account_country,
+        state as account_state,
+        city as account_city,
+        industry as account_industry, 
+        fleet_size as account_fleet_size
     from base
 )select * from final

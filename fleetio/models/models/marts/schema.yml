@@ -1,6 +1,47 @@
 version: 2
 
 models:
+  - name: d__accounts
+    description: "Table containing basic account information on opportunities and leads. Account records are created after leads are converted."
+    columns:
+      - name: account_id
+        description: "Primary key taken directly from the original seed file."
+        tests:
+          - unique
+          - not_null
+      - name: account_company
+        description: "The company associated with the account_id.  There should not be duplicate company names in this dataset.  If so talk to team X."
+        tests:
+          - unique
+          - not_null
+      - name: account_country
+        description: "country associated with the account."
+        tests:
+          - accepted_values:
+              values: ['US']
+      - name: account_state
+        description: "state associated with the account."
+      - name: account_city
+        description: "city associated with the account."
+
+
+        a.primary_contact_id,
+        c.contact_first_name as primary_contact_first_name,
+        c.contact_last_name as primary_contact_last_name,
+        c.contact_job_title as primary_contact_job_title,
+        c.contact_email as primary_contact_rmail,
+        a.account_industry, 
+        a.account_fleet_size,
+        c.lead_id,
+        d.lead_created_at_date,
+        d.lead_converted_at_date,
+        d.lead_source,
+        b.opportunity_id,
+        b.opportunity_created_at_date,
+        b.opportunity_closed_at_date,
+        b.opportunity_is_closed,
+        b.opportunity_is_won
+
+
   - name: d__leads
-  - name: d__opportunities
   - name: fct_leads_daily

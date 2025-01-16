@@ -6,14 +6,13 @@ with base as(
 final as(
     select 
         id as contact_id,
-        first_name,
-        last_name,
-        job_title,
-        email,
+        first_name as contact_first_name,
+        last_name as contact_last_name,
+        job_title as contact_job_title,
+        email as contact_email,
         account_id,
         lead_id,
-        /* I am going to be converting to date in staging 
-        assuming we will never need the timestamp grain */
-        date(created_at) as created_at_date
+        created_at as contact_created_at,
+        date(created_at) as contact_created_at_date
     from base
 ) select * from final

@@ -6,20 +6,20 @@ with base as(
 final as(
     select 
         id as lead_id,
-        first_name,
-        last_name,
-        job_title,
-        email,
-        company,
-        /* I am going to be converting to date in staging 
-        assuming we will never need the timestamp grain */
-        date(created_at) as created_at_date,
-        date(converted_at) as converted_at_date,
-        source,
-        country,
-        city,
-        state,
-        industry,
-        fleet_size
+        first_name as lead_first_name,
+        last_name as lead_last_name,
+        job_title as lead_job_title,
+        email as lead_email,
+        company as lead_company,
+        created_at as lead_created_at,
+        date(created_at) as lead_created_at_date,
+        converted_at as lead_converted_at,
+        date(converted_at) as lead_converted_at_date,
+        source as lead_source,
+        country as lead_country,
+        city as lead_city,
+        state as lead_state,
+        industry as lead_industry,
+        fleet_size as lead_fleet_size
     from base
 ) select * from final
