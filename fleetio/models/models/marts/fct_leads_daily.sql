@@ -10,8 +10,8 @@ final as(
         lead_converted_at_date,
         /*creating numerical fields for the BI tool to count converted vs non converted leads 
         if sales and marketing want to see some ratios*/        
-        case when lead_converted_at_date is not null then 1 else 0 end as is_converted,
-        case when lead_converted_at_date is null then 1 else 0 end as is_not_converted,
+        case when lead_converted_at_date is not null then 1 else 0 end as lead_is_converted,
+        case when lead_converted_at_date is null then 1 else 0 end as lead_is_not_converted,
         lead_company,
         lead_source,
         lead_industry,
