@@ -34,7 +34,6 @@ final as(
         a.lead_state,
         a.lead_industry,
         a.lead_fleet_size,
-        d.opportunity_id,
         /*we may want metrics on what happens to leads after they become opportunites
         for which we can use this column for any trends of leads that were not only
         converted but became won opportunities*/ 

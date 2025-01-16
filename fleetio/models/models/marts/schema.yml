@@ -58,4 +58,55 @@ models:
           - accepted_values:
               values: ['TRUE', 'FALSE']
   - name: d__leads
+      description: "Leads are created from various sources.  When leads are converted contact, account and opportunity records are created."
+        - name: lead_id
+          description: "Primary key, one row is one lead."
+          tests:
+            - unique
+            - not_null
+        - name: lead_first_name
+          description: "first name associated with the lead."
+          tests:
+            - not_null
+        - name: lead_last_name
+          description: "last name associated with the lead."
+          tests:
+            - not_null
+        - name: lead_job_title
+          description: "job title associated with the lead."
+        - name: lead_email
+          description: "email associated with the lead."
+        - name: lead_company
+          description: "The company associated with the lead.  There should not be duplicate company names in this dataset.  If so talk to team X."
+          tests:
+            - unique
+            - not_null
+        - name: lead_created_at_date
+          description: "date of when the lead was created."
+        - name: lead_converted_at_date
+          description: "date of when the lead was converted."
+        - name: lead_source
+          description: "source the lead came from."
+        - name: lead_country
+          description: "country associated with the lead."
+          tests:
+            - accepted_values:
+                values: ['US']
+        - name: lead_city
+          description: "city associated with the lead."
+        - name: lead_state
+          description: "state associated with the lead."
+        - name: lead_industry
+          description: "industry associated with the lead."
+        - name: lead_fleet_size
+          description: "fleet size associated with the lead."
+        - name: opportunity_status
+          description: Current status of the opportunity that the lead created (if converted).  See acceptable value list for categories."
+          tests:
+            - accepted_values:
+                values: ['won opportunity', 'lost opportunity', 'open opportunity', 'lead not converted to opportunity']
+
+
+
   - name: fct_leads_daily
+

@@ -116,7 +116,7 @@ models:
       - name: lead_industry
         description: "industry associated with the lead."
       - name: lead_fleet_size
-        description: fleet size associated with the lead."
+        description: "fleet size associated with the lead."
   - name: stg_opportunities
     description: "Opportunities are created after leads have converted. Owned by the sales and marketing team."
     columns:
