@@ -23,25 +23,39 @@ models:
         description: "state associated with the account."
       - name: account_city
         description: "city associated with the account."
-
-
-        a.primary_contact_id,
-        c.contact_first_name as primary_contact_first_name,
-        c.contact_last_name as primary_contact_last_name,
-        c.contact_job_title as primary_contact_job_title,
-        c.contact_email as primary_contact_rmail,
-        a.account_industry, 
-        a.account_fleet_size,
-        c.lead_id,
-        d.lead_created_at_date,
-        d.lead_converted_at_date,
-        d.lead_source,
-        b.opportunity_id,
-        b.opportunity_created_at_date,
-        b.opportunity_closed_at_date,
-        b.opportunity_is_closed,
-        b.opportunity_is_won
-
-
+      - name: primary_contact_first_name
+        description: "first name associated with the primary contact."
+      - name: primary_contact_last_name
+        description: "last name associated with the primary contact."
+      - name: primary_contact_job_title
+        description: "job titlee associated with the primary contact."
+      - name:  primary_contact_email
+        description: "email associated with the primary contact."
+      - name: account_industry
+        description: "industry associated with the account."
+      - name: account_fleet_size
+        description: fleet size associated with the account."
+      - name: lead_created_at_date
+        description: "date of when the lead was created."
+      - name: lead_converted_at_date
+        description: "date of when the lead was converted."
+      - name: lead_source
+        description: "source the lead came from."
+      - name: opportunity_created_at_date
+        description: "date of when the opportunity was created."
+      - name: opportunity_closed_at_date
+        description: "date of when the opportunity was closed."
+      - name: opportunity_is_closed
+        description: "true of the opportunity is closed. This field should never be null."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['TRUE', 'FALSE']
+      - name: opportunity_is_won
+        description: "true of the opportunity is won.  This field should never be null."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['TRUE', 'FALSE']
   - name: d__leads
   - name: fct_leads_daily
