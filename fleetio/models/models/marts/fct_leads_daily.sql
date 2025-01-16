@@ -18,6 +18,10 @@ final as(
         source,
         industry,
         fleet_size,
+        first_name,
+        last_name,
+        job_title,
+        email,
         country,
         city,
         state
