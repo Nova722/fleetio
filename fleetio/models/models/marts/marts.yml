@@ -10,7 +10,7 @@ models:
           - unique
           - not_null
       - name: account_company
-        description: "The company associated with the account_id.  There should not be duplicate company names in this dataset.  If so talk to team X."
+        description: "The company associated with the account."
         tests:
           - unique
           - not_null
@@ -28,7 +28,7 @@ models:
       - name: primary_contact_last_name
         description: "last name associated with the primary contact."
       - name: primary_contact_job_title
-        description: "job titlee associated with the primary contact."
+        description: "job title associated with the primary contact."
       - name:  primary_contact_email
         description: "email associated with the primary contact."
       - name: account_industry
@@ -46,13 +46,13 @@ models:
       - name: opportunity_closed_at_date
         description: "date of when the opportunity was closed."
       - name: opportunity_is_closed
-        description: "true of the opportunity is closed. This field should never be null."
+        description: "true of the opportunity is closed."
         tests:
           - not_null
           - accepted_values:
               values: ['TRUE', 'FALSE']
       - name: opportunity_is_won
-        description: "true of the opportunity is won.  This field should never be null."
+        description: "true of the opportunity is won."
         tests:
           - not_null
           - accepted_values:
